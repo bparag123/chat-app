@@ -49,7 +49,7 @@ const io = new Server(server)
 
 io.on("connection", socket => {
     console.log(socket.id);
-    
+
 
     socket.on("send message", async (data, cb) => {
         const [room, user] = await Promise.all([
@@ -60,9 +60,10 @@ io.on("connection", socket => {
             from: user._id,
             time: new Date(data.time)
         }
-        const dateForDatabase = new Date(data.time)
-        console.log(dateForDatabase);
-        console.log(dateForDatabase.getTimezoneOffset());
+        var dt = new Date(data.time)
+        dt.setMinutes(dt.getMinutes() + dt.getTimezoneOffset())
+        console.log(dt)
+        
         if (room.messages.length > 0) {
             room.messages.push(msgToSave)
         } else {
