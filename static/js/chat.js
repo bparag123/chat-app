@@ -41,18 +41,13 @@ document.querySelector("#chat").addEventListener("submit", (e) => {
     e.preventDefault()
     const msg = $msgInput.value
     if (msg !== "") {
-        var currentTime = new Date();
-
-        var currentOffset = currentTime.getTimezoneOffset();
-
-        var ISTOffset = 330;   // IST offset UTC +5:30 
-
-        var ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset) * 60000);
+        const currentTime = new Date().toISOString();
+        const ct = new Date(currentTime)
         
-            socket.emit("send message", { msg, room: $room.innerText, user: $currentUser.innerText, time: ISTTime }, () => {
+            socket.emit("send message", { msg, room: $room.innerText, user: $currentUser.innerText, time: ct }, () => {
                 const newOutgoingMessage = document.createElement("div")
                 newOutgoingMessage.setAttribute("class", "outgoing")
-                let elem = `<p>${msg}</p><span class="text-muted"><small>${moment(ISTTime).format("h:mm a")}</small></span>`
+                let elem = `<p>${msg}</p><span class="text-muted"><small>${moment(ct).format("h:mm a")}</small></span>`
                 newOutgoingMessage.innerHTML = elem
                 $messages.appendChild(newOutgoingMessage)
                 $msgInput.value = ''
