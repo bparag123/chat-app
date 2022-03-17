@@ -114,7 +114,7 @@ body {
 
 @media screen and (max-width: 768px) {
   body{
-    font-size: xx-small;
+    font-size: small;
   }
 
   #signUpForm {

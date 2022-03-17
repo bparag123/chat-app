@@ -60,6 +60,9 @@ io.on("connection", socket => {
             from: user._id,
             time: data.time
         }
+        const dateForDatabase = new Date(data.time)
+        console.log(dateForDatabase);
+        console.log(dateForDatabase.getTimezoneOffset());
         if (room.messages.length > 0) {
             room.messages.push(msgToSave)
         } else {
