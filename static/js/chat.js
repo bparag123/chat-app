@@ -7,6 +7,8 @@ const $room = document.querySelector(".room")
 const $joinRoom = document.querySelector("#join")
 
 $chatBody.scrollTop = $chatBody.scrollHeight
+
+//Listening for welcome event and setting as a Incoming message
 socket.on("welcome", (data) => {
     const newIncomingMessage = document.createElement("div")
     newIncomingMessage.setAttribute("class", "info")
@@ -15,11 +17,12 @@ socket.on("welcome", (data) => {
     $chatBody.scrollTop = $chatBody.scrollHeight
 })
 
+//When this file Loads Fire the Join Event
 socket.emit("join", { user: $currentUser.innerText, room: $room.innerText }, () => {
     console.log("Successfull");
 })
 
-
+//Listening for info event and setting as a Info msg 
 socket.on("infoMsg", (data) => {
     const newIncomingMessage = document.createElement("div")
     newIncomingMessage.setAttribute("class", "info")
@@ -28,6 +31,7 @@ socket.on("infoMsg", (data) => {
     $chatBody.scrollTop = $chatBody.scrollHeight
 })
 
+//Listening for incoming message event
 socket.on("incoming message", (data) => {
     const newIncomingMessage = document.createElement("div")
     newIncomingMessage.setAttribute("class", "incoming")
@@ -36,14 +40,14 @@ socket.on("incoming message", (data) => {
     $messages.appendChild(newIncomingMessage)
     $chatBody.scrollTop = $chatBody.scrollHeight
 })
-
+//Add Event Listener on Form Submit
 document.querySelector("#chat").addEventListener("submit", (e) => {
     e.preventDefault()
     const msg = $msgInput.value
     if (msg !== "") {
         const currentTime = new Date().toISOString();
         const ct = new Date(currentTime)
-        
+        //Firing Send Message Event
         socket.emit("send message", { msg, room: $room.innerText, user: $currentUser.innerText, time: ct }, () => {
             const newOutgoingMessage = document.createElement("div")
             newOutgoingMessage.setAttribute("class", "outgoing")

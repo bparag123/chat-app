@@ -1,5 +1,5 @@
 import moment from "moment";
-
+//This is a helper function for the hbs for setting the ui of past messages
 export default {
     messageShow: function(user, message, options){
         let ele = ""

@@ -14,6 +14,7 @@ router.get("/join-room", async (req, res, next)=>{
 })
 
 router.post("/join-room", async (req, res, next)=>{
+    //Checking for valid user, room and password
     const {username, password, roomName} = req.body
     const user = await User.findOne({username})
     if(!user){
@@ -32,6 +33,7 @@ router.post("/join-room", async (req, res, next)=>{
         room.users = [user._id]
     }
     else{
+        //Checking for Member of Room
         const alreadyMember = room.users.findIndex((ele)=>{
             return ele._id.toString() === user._id.toString()
         })
