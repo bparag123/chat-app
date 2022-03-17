@@ -52,8 +52,6 @@ io.on("connection", socket => {
     
 
     socket.on("send message", async (data, cb) => {
-        const dt = new Date().getTime()
-
         const [room, user] = await Promise.all([
             Room.findOne({ name: data.room }),
             User.findOne({ username: data.user })])
