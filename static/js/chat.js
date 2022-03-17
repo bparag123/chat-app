@@ -10,7 +10,7 @@ $chatBody.scrollTop = $chatBody.scrollHeight
 socket.on("welcome", (data) => {
     const newIncomingMessage = document.createElement("div")
     newIncomingMessage.setAttribute("class", "info")
-    newIncomingMessage.innerHTML = data
+    newIncomingMessage.innerHTML = `<p>${data}</p>`
     $messages.appendChild(newIncomingMessage)
     $chatBody.scrollTop = $chatBody.scrollHeight
 })
@@ -23,7 +23,7 @@ socket.emit("join", { user: $currentUser.innerText, room: $room.innerText }, () 
 socket.on("infoMsg", (data) => {
     const newIncomingMessage = document.createElement("div")
     newIncomingMessage.setAttribute("class", "info")
-    newIncomingMessage.innerHTML = data
+    newIncomingMessage.innerHTML = `<p>${data}</p>`
     $messages.appendChild(newIncomingMessage)
     $chatBody.scrollTop = $chatBody.scrollHeight
 })

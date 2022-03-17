@@ -6,6 +6,7 @@
 
 body {
   height: 100vh;
+  font-size: medium;
 }
 .chat-body {
   height: 70vh;
@@ -112,7 +113,16 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  body{
+    font-size: xx-small;
+  }
+
   #signUpForm {
     width: 70%;
+  }
+
+  .info{
+    font-size: xx-small;
+    max-width: fit-content;
   }
 }
