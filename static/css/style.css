@@ -110,3 +110,9 @@ body {
   margin: 0rem 1rem 0rem 1rem;
   border-radius: 0 !important;
 }
+
+@media screen and (max-width: 768px) {
+  #signUpForm {
+    width: 70%;
+  }
+}
