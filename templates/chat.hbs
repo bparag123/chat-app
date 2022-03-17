@@ -1,0 +1,47 @@
+<div class="container main-area">
+  <div class="users">
+    <div class="room">
+      <i class="fas fa-users-class">{{data.room}}</i>
+    </div>
+    <div class="alert alert-warning userInRoom text-center" role="alert">
+      <i class="fas fa-users"></i>
+    </div>
+    <ul class="list-group otherUsers">
+      <li class="list-group-item" aria-current="true">
+        <span class="currentUser">
+          {{data.currentUser}}
+        </span>
+      </li>
+      {{#each data.users}}
+      {{#with this}}
+      <li class="list-group-item">{{username}}</li>
+
+      {{/with}}
+      {{/each}}
+    </ul>
+  </div>
+  <div class="container chat-area">
+    <div class="container chat-body">
+      <div class="messages">
+
+        {{#messageShow data.currentUser data.messages}}
+        {{/messageShow}}
+      </div>
+
+    </div>
+    <div class="container formContainer">
+      <form id="chat">
+        <div class="row mt-2">
+          <div class="col-10">
+            <input type="text" class="form-control" id="msgInput" placeholder="type your message here" />
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>

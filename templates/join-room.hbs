@@ -1,0 +1,24 @@
+<form action="./join-room" id="signUpForm" method="post" role="form" enctype="application/x-www-form-urlencoded">
+    <div class="alert alert-primary text-center" role="alert">
+      Join a Room
+    </div>
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+    </div>
+    <select class="form-select" name="roomName" aria-label="Default select example">
+        <option selected>Select Room to Join</option>
+        {{#each rooms}}
+            {{#with this}}
+            <option value="{{name}}">{{name}}</option>
+            {{/with}}
+        {{/each}}
+    </select>
+    <div class="col-12 text-center">
+        <button type="submit" id="join" class="btn btn-primary mt-1"><i class="fas fa-hand-point-right"></i></button>
+    </div>
+</form>
