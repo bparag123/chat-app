@@ -62,7 +62,7 @@ body {
 }
 
 .formContainer {
-  width: 70%;
+  width: 90%;
   margin: auto;
   margin-bottom: 1rem;
 }
@@ -104,6 +104,7 @@ body {
   border-radius: 0 !important;
   border-bottom-left-radius: 1rem !important;
   border-bottom-right-radius: 1rem !important;
+  
 }
 
 .userInRoom {
@@ -121,8 +122,23 @@ body {
     width: 70%;
   }
 
+  .userInRoom {
+    padding: 0.2rem;
+    margin: 0rem 0.2rem 0rem 0.2rem;
+  }
   .info{
     font-size: xx-small;
     max-width: fit-content;
+  }
+  .room {
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+    padding: 0rem;
+    margin: 1rem 0.2rem;
+  }
+  .otherUsers {
+    padding: 0.2rem;
+    border-bottom-left-radius: 0rem !important;
+    border-bottom-right-radius: 0rem !important;
   }
 }

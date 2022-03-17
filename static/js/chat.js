@@ -43,7 +43,7 @@ document.querySelector("#chat").addEventListener("submit", (e) => {
     if (msg !== "") {
         const currentTime = new Date().toISOString();
         const ct = new Date(currentTime)
-        console.log(ct.getTimezoneOffset())
+        
         socket.emit("send message", { msg, room: $room.innerText, user: $currentUser.innerText, time: ct }, () => {
             const newOutgoingMessage = document.createElement("div")
             newOutgoingMessage.setAttribute("class", "outgoing")

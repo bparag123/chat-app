@@ -48,9 +48,7 @@ const server = http.createServer(app)
 const io = new Server(server)
 
 io.on("connection", socket => {
-    console.log(socket.id);
-
-
+    
     socket.on("send message", async (data, cb) => {
         const [room, user] = await Promise.all([
             Room.findOne({ name: data.room }),
@@ -60,9 +58,6 @@ io.on("connection", socket => {
             from: user._id,
             time: new Date(data.time)
         }
-        var dt = new Date(data.time)
-        dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset())
-        console.log(dt)
         
         if (room.messages.length > 0) {
             room.messages.push(msgToSave)
@@ -86,14 +81,12 @@ io.on("connection", socket => {
     })
 
     socket.on("disconnect", async () => {
-        console.log("disconnecting");
         const user = await User.findOne({ socketId: socket.id })
 
         socket.broadcast.to(user.currentRoom).emit('infoMsg', `${user.username} is offline`)
         user.socketId = undefined
         user.currentRoom = undefined
         await user.save()
-        console.log("disconnected");
 
 
     })
