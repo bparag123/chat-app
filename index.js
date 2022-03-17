@@ -58,7 +58,7 @@ io.on("connection", socket => {
         const msgToSave = {
             context: data.msg,
             from: user._id,
-            time: data.time
+            time: new Date(data.time)
         }
         const dateForDatabase = new Date(data.time)
         console.log(dateForDatabase);
