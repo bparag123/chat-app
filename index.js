@@ -61,7 +61,7 @@ io.on("connection", socket => {
             time: new Date(data.time)
         }
         var dt = new Date(data.time)
-        dt.setMinutes(dt.getMinutes() + dt.getTimezoneOffset())
+        dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset())
         console.log(dt)
         
         if (room.messages.length > 0) {
