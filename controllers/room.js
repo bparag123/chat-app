@@ -17,7 +17,7 @@ router.post("/join-room", async (req, res, next)=>{
     const {username, password, roomName} = req.body
     const user = await User.findOne({username})
     if(!user){
-        return req.json("User Not Found")
+        return res.json("User Not Found")
     }
     if(user.password !== password){
         return res.json("Invalid Password")
@@ -57,6 +57,7 @@ router.post("/join-room", async (req, res, next)=>{
         currentUser : user.username,
         messages:room.messages
     }
+    
     res.render("chat", {data})
 })
 
